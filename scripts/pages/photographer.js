@@ -1,5 +1,4 @@
-async function getPhotographer() {
-  const id = location.search.split("=")[1];
+async function getPhotographer(id) {
   const photographer = fetch("data/photographers.json")
     .then((res) => res.json())
     .then((datas) => {
@@ -10,7 +9,8 @@ async function getPhotographer() {
 }
 
 async function displayDetails() {
-  const photographer = await getPhotographer();
+  const id = location.search.split("=")[1];
+  const photographer = await getPhotographer(id);
   const photographerHeader = document.querySelector("main");
 
   console.log(photographer)
