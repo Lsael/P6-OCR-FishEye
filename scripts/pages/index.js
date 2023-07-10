@@ -1,4 +1,4 @@
-async function getPhotographers() {
+const getPhotographers = async () => {
   const photographers = fetch('data/photographers.json')
     .then((res) => res.json())
     .then((datas) => {
