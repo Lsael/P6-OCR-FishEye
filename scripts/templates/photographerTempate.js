@@ -26,3 +26,25 @@ const usePhotographerPageTemplate = (photographer) => {
   </div>
   `;
 };
+
+const usePhotographerGalleryTemplate = (gallery) => {
+  console.log(gallery)
+
+  return `
+  <section class="photographer-gallery">
+    ${
+      gallery.map((media) => {
+        return `
+        <article>
+          <img src='assets/media/${media.image}' alt='${media.title}' />
+          <div>
+            <h3>${media.title}<h3>
+            <span aria-label="likes">${media.likes} &hearts;</span>
+          </div>
+        </article>
+        `
+      })
+    }
+  </section>
+  `;
+};

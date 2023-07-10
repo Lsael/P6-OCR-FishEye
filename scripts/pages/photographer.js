@@ -8,15 +8,33 @@ const getPhotographer = async (id) => {
   return photographer;
 }
 
+const getPhotographerGallery = async (id) => {
+  const gallery = fetch('data/photographers.json')
+  .then((res) => res.json())
+  .then((datas) => {
+    return datas.media.filter((data) => data.photographerId === +id);
+  });
+
+return gallery;
+}
+
+const displayPhotographersGallery = (HTMLtarget, gallery) => {
+  const photographerGallery = usePhotographerGalleryTemplate(gallery)
+  HTMLtarget.insertAdjacentHTML( 'beforeend', photographerGallery )
+}
+
 const displayPhotographersPage = (HTMLtarget, photographer) => {
-  const photographerPage = getPhotographerPageTemplate(photographer);
+  console.log(photographer)
+  const photographerPage = usePhotographerPageTemplate(photographer);
   HTMLtarget.innerHTML = photographerPage;
 }
 
 (async () => {
   const id = await location.search.split('=')[1];
-  const photographerHeader = document.querySelector('main');
+  const photographerMain = document.querySelector('main');
   const photographer = await getPhotographer(id);
+  const gallery = await getPhotographerGallery(id)
 
-  displayPhotographersPage(photographerHeader, photographer);
+  displayPhotographersPage(photographerMain, photographer);
+  displayPhotographersGallery(photographerMain, gallery)
 })();

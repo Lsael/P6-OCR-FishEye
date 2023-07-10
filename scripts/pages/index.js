@@ -11,7 +11,7 @@ const getPhotographers = async () => {
 const displayPhotographersThumbnails = (HTMLtarget, photographers) => {
   const photographersList = photographers
     .map((photographer) => {
-      return getPhotographerThumbnailTemplate(photographer);
+      return usePhotographerThumbnailTemplate(photographer);
     })
     .join('');
 
