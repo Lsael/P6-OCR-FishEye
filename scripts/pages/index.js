@@ -6,7 +6,7 @@ const getPhotographers = async () => {
     });
 
   return photographers;
-}
+};
 
 const displayPhotographersThumbnails = (HTMLtarget, photographers) => {
   const photographersList = photographers

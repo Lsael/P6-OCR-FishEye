@@ -25,27 +25,28 @@ main {
 .photographer-gallery {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
+}
+
+.photographer-gallery article {
+  margin: 20px 0;
+  width: 26%;
+  display: flex;
+  flex-direction: column;
+}
+
+.photographer-gallery article img, .photographer-gallery article video {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 4px;
 }
 
 .photographer-gallery div {
   display: flex;
   justify-content: space-between;
   color: #901C1C;
-}
-
-.photographer-gallery article {
-  margin: auto;
-  width: 25%;
-  display: flex;
-  flex-direction: column;
-}
-
-.photographer-gallery article img {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
 }
 
 .modal {

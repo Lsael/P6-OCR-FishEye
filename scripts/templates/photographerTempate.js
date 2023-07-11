@@ -28,23 +28,30 @@ const usePhotographerPageTemplate = (photographer) => {
 };
 
 const usePhotographerGalleryTemplate = (gallery) => {
-  console.log(gallery)
+  console.log(gallery);
 
   return `
   <section class="photographer-gallery">
-    ${
-      gallery.map((media) => {
+    ${gallery
+      .map((media) => {
         return `
         <article>
-          <img src='assets/media/${media.image}' alt='${media.title}' />
+          ${media.image ? 
+            `<img src='assets/media/${media.image}' alt='${media.title}' />` :
+            `
+            <video preload="metadata" alt='${media.title}' controls >
+              <source src='assets/media/${media.video}#t=0.1' type="video/mp4">
+            </video>
+            `
+          }
           <div>
             <h3>${media.title}<h3>
             <span aria-label="likes">${media.likes} &hearts;</span>
           </div>
         </article>
-        `
+        `;
       })
-    }
+      .join('')}
   </section>
   `;
 };
