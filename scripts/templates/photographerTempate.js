@@ -55,3 +55,17 @@ const usePhotographerGalleryTemplate = (gallery) => {
   </section>
   `;
 };
+
+const usePhotographerPriceBoxTemplate = (photographerPrice, gallery) => {
+  let totalLikes = 0;
+  gallery.map((element) => {
+    totalLikes += element.likes
+  })
+
+  return `
+  <aside class="photographer-price">
+    <span>${totalLikes} &hearts;</span>
+    <span>${photographerPrice}€ / jour</span>
+  </aside>
+  `
+}

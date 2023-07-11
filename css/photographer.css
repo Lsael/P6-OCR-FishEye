@@ -49,6 +49,24 @@ main {
   color: #901C1C;
 }
 
+/* La couleur du background donnée dans la maquette ne correspond pas à la couleur affichée */
+.photographer-price {
+  position: fixed;
+  bottom: 0;
+  right: 5%;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 8px;
+  background-color: #d47761;
+  font-size: 24px;
+  border-radius: 5px 5px 0 0;
+  font-weight: 600;
+}
+
+.photographer-price span {
+  margin: 0 24px;
+}
+
 .modal {
   border-radius: 5px;
   background-color: #db8876;

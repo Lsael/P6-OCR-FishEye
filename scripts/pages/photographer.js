@@ -23,6 +23,11 @@ const displayPhotographersGallery = (HTMLtarget, gallery) => {
   HTMLtarget.insertAdjacentHTML('beforeend', photographerGallery);
 };
 
+const displayPhotographersPriceBox = (HTMLtarget, photographerPrice, gallery) => {
+  const photographerPriceBox = usePhotographerPriceBoxTemplate(photographerPrice, gallery);
+  HTMLtarget.insertAdjacentHTML('beforeend', photographerPriceBox);
+};
+
 const displayPhotographersPage = (HTMLtarget, photographer) => {
   console.log(photographer);
   const photographerPage = usePhotographerPageTemplate(photographer);
@@ -37,4 +42,5 @@ const displayPhotographersPage = (HTMLtarget, photographer) => {
 
   displayPhotographersPage(photographerMain, photographer);
   displayPhotographersGallery(photographerMain, gallery);
+  displayPhotographersPriceBox(photographerMain, photographer.price, gallery)
 })();
