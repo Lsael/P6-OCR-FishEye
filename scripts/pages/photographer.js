@@ -49,7 +49,8 @@ const UpdateLikes = (quantity, id) => {
 }
 
 (async () => {
-  const id = await location.search.split('=')[1];
+  const searchParams = new URLSearchParams(location.search)
+  const id = searchParams.get('id')
   const photographerDetailsElement = document.querySelector('#photographer-details');
   const photographer = await getPhotographer(id);
   const gallery = await getPhotographerGallery(id);
