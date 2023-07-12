@@ -2,7 +2,7 @@ const getPhotographer = async (id) => {
   const photographer = fetch('data/photographers.json')
     .then((res) => res.json())
     .then((datas) => {
-      return datas.photographers.filter((data) => data.id === +id)[0];
+      return datas.photographers.find((data) => data.id === +id);
     });
 
   return photographer;
@@ -23,8 +23,8 @@ const displayPhotographersGallery = (HTMLtarget, gallery) => {
   HTMLtarget.insertAdjacentHTML('beforeend', photographerGallery);
 };
 
-const displayPhotographersPriceBox = (HTMLtarget, photographerPrice, gallery) => {
-  const photographerPriceBox = usePhotographerPriceBoxTemplate(photographerPrice, gallery);
+const displayPhotographersPriceBox = (HTMLtarget, photographerPrice, totalLikes) => {
+  const photographerPriceBox = usePhotographerPriceBoxTemplate(photographerPrice, totalLikes);
   HTMLtarget.insertAdjacentHTML('beforeend', photographerPriceBox);
 };
 
@@ -34,13 +34,34 @@ const displayPhotographersPage = (HTMLtarget, photographer) => {
   HTMLtarget.innerHTML = photographerPage;
 };
 
+const UpdateLikes = (quantity, id) => {
+  let totalLikesElement = document.querySelector("#total-likes-count")
+  let totalLikes = Number(totalLikesElement.innerText)
+  
+  if(id) {
+    let mediaLikesElement = document.querySelector(`.${CSS.escape(id)} > span`)
+    let mediaLikes = Number(mediaLikesElement.innerText)
+    mediaLikesElement.innerText = (mediaLikes += quantity)
+    totalLikesElement.innerText = (totalLikes += quantity)
+  } else {
+    totalLikesElement.innerText = (totalLikes += quantity)
+  }
+}
+
 (async () => {
   const id = await location.search.split('=')[1];
-  const photographerMain = document.querySelector('main');
+  const photographerDetailsElement = document.querySelector('#photographer-details');
   const photographer = await getPhotographer(id);
   const gallery = await getPhotographerGallery(id);
+  
+  let totalLikes = 0;
+  gallery.map((element) => {
+    totalLikes += element.likes
+  })
 
-  displayPhotographersPage(photographerMain, photographer);
-  displayPhotographersGallery(photographerMain, gallery);
-  displayPhotographersPriceBox(photographerMain, photographer.price, gallery)
+  displayPhotographersPage(photographerDetailsElement, photographer);
+  displayPhotographersGallery(photographerDetailsElement, gallery);
+  displayPhotographersPriceBox(photographerDetailsElement, photographer.price)
+  UpdateLikes(totalLikes)
+
 })();

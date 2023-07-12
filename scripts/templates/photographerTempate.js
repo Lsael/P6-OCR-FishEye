@@ -45,8 +45,8 @@ const usePhotographerGalleryTemplate = (gallery) => {
             `
           }
           <div>
-            <h3>${media.title}<h3>
-            <span aria-label="likes">${media.likes} &hearts;</span>
+            <h3>${media.title}</h3>
+            <p aria-label="likes" class="${media.id}" onClick={UpdateLikes(1,${media.id})}><span>${media.likes}</span> &hearts;</p>
           </div>
         </article>
         `;
@@ -56,15 +56,11 @@ const usePhotographerGalleryTemplate = (gallery) => {
   `;
 };
 
-const usePhotographerPriceBoxTemplate = (photographerPrice, gallery) => {
-  let totalLikes = 0;
-  gallery.map((element) => {
-    totalLikes += element.likes
-  })
+const usePhotographerPriceBoxTemplate = (photographerPrice/* , totalLikes */) => {
 
   return `
   <aside class="photographer-price">
-    <span>${totalLikes} &hearts;</span>
+    <p><span id="total-likes-count"></span> &hearts;</p>
     <span>${photographerPrice}€ / jour</span>
   </aside>
   `
