@@ -22,6 +22,21 @@ main {
   border-radius: 50%;
 }
 
+.sort-bar {
+  font-weight: bold;
+  margin: 16px 0;
+}
+
+#sort-options {
+  cursor: pointer;
+  width: 170px;
+  margin: 0 16px;
+  padding: 16px 8px;
+  background-color: #901C1C;
+  color: white;
+  border-radius: 4px;
+}
+
 .photographer-gallery {
   width: 100%;
   display: flex;

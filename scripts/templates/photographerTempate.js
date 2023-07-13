@@ -15,7 +15,7 @@ const usePhotographerPageTemplate = (photographer) => {
   const { name, city, tagline, portrait } = photographer;
 
   return `
-  <div class="photographer-header">
+  <section class="photographer-header">
     <div class="photographer-infos">
       <h1 class="photographer-name">${name}</h1>
       <h3 class="photographer-city">${city}</h3>
@@ -23,12 +23,19 @@ const usePhotographerPageTemplate = (photographer) => {
     </div>
     <button class="button" onclick="displayModal()">Contactez-moi</button>
     <img src='assets/photographers/${portrait}' alt='${name}-picture' />
-  </div>
+  </section>
+  <section class="sort-bar">
+  <label for="sort-options">Trier par</label>
+  <select id="sort-options" onChange="displayPhotographersGallery()">
+    <option value="Popularity">Popularité</option>
+    <option value="Date">Date</option>
+    <option value="Title">Titre</option>
+  </select>
+  </section>
   `;
 };
 
 const usePhotographerGalleryTemplate = (gallery) => {
-  console.log(gallery);
 
   return `
   <section class="photographer-gallery">
@@ -56,7 +63,7 @@ const usePhotographerGalleryTemplate = (gallery) => {
   `;
 };
 
-const usePhotographerPriceBoxTemplate = (photographerPrice/* , totalLikes */) => {
+const usePhotographerPriceBoxTemplate = (photographerPrice) => {
 
   return `
   <aside class="photographer-price">

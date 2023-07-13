@@ -1,3 +1,7 @@
+const searchParams = new URLSearchParams(location.search)
+const id = searchParams.get('id')
+const photographerDetailsElement = document.querySelector('#photographer-details');
+
 const getPhotographer = async (id) => {
   const photographer = fetch('data/photographers.json')
     .then((res) => res.json())
@@ -18,21 +22,25 @@ const getPhotographerGallery = async (id) => {
   return gallery;
 };
 
-const displayPhotographersGallery = (HTMLtarget, gallery) => {
-  const photographerGallery = usePhotographerGalleryTemplate(gallery);
-  HTMLtarget.insertAdjacentHTML('beforeend', photographerGallery);
-};
-
-const displayPhotographersPriceBox = (HTMLtarget, photographerPrice, totalLikes) => {
-  const photographerPriceBox = usePhotographerPriceBoxTemplate(photographerPrice, totalLikes);
-  HTMLtarget.insertAdjacentHTML('beforeend', photographerPriceBox);
-};
-
-const displayPhotographersPage = (HTMLtarget, photographer) => {
-  console.log(photographer);
-  const photographerPage = usePhotographerPageTemplate(photographer);
-  HTMLtarget.innerHTML = photographerPage;
-};
+const sortGallery = (gallery, selectedOption) => {
+  switch (selectedOption) {
+    case 'Popularity':
+      gallery.sort((a, b) => {
+        return b.likes - a.likes;
+      })
+      return gallery;
+    case 'Date':
+      gallery.sort((a, b) => {
+        return b.date - a.date;
+      })
+      return gallery;
+    case 'Title':
+      gallery.sort((a, b) => {
+        return a.title.localeCompare(b.title);
+      })
+      return gallery;
+  }
+}
 
 const UpdateLikes = (quantity, id) => {
   let totalLikesElement = document.querySelector("#total-likes-count")
@@ -48,10 +56,33 @@ const UpdateLikes = (quantity, id) => {
   }
 }
 
+
+const displayPhotographersGallery = async () => {
+  const gallery = await getPhotographerGallery(id);
+  const selectElement = document.querySelector("#sort-options")
+  const galleryElement = document.querySelector('.photographer-gallery')
+  console.log(selectElement.value)
+  
+  const photographerGallery = usePhotographerGalleryTemplate(sortGallery(gallery, selectElement.value));
+
+  if(galleryElement) {
+    galleryElement.remove()
+  }
+  
+  photographerDetailsElement.insertAdjacentHTML('beforeend', photographerGallery);
+};
+
+const displayPhotographersPriceBox = (HTMLtarget, photographerPrice, totalLikes) => {
+  const photographerPriceBox = usePhotographerPriceBoxTemplate(photographerPrice, totalLikes);
+  HTMLtarget.insertAdjacentHTML('beforeend', photographerPriceBox);
+};
+
+const displayPhotographersPage = (HTMLtarget, photographer) => {
+  const photographerPage = usePhotographerPageTemplate(photographer);
+  HTMLtarget.innerHTML = photographerPage;
+};
+
 (async () => {
-  const searchParams = new URLSearchParams(location.search)
-  const id = searchParams.get('id')
-  const photographerDetailsElement = document.querySelector('#photographer-details');
   const photographer = await getPhotographer(id);
   const gallery = await getPhotographerGallery(id);
   
@@ -61,7 +92,7 @@ const UpdateLikes = (quantity, id) => {
   })
 
   displayPhotographersPage(photographerDetailsElement, photographer);
-  displayPhotographersGallery(photographerDetailsElement, gallery);
+  displayPhotographersGallery('Popularity');
   displayPhotographersPriceBox(photographerDetailsElement, photographer.price)
   UpdateLikes(totalLikes)
 
