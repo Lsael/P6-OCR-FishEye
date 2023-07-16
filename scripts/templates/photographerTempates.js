@@ -21,7 +21,7 @@ const usePhotographerPageTemplate = (photographer) => {
       <h3 class="photographer-city">${city}</h3>
       <span class="photographer-tagline">${tagline}</span>
     </div>
-    <button class="button" onclick="displayModal()">Contactez-moi</button>
+    <button class="button" onclick="displayContactModal()">Contactez-moi</button>
     <img src='assets/photographers/${portrait}' alt='${name}-picture' />
   </section>
   <section class="sort-bar">
@@ -40,9 +40,9 @@ const usePhotographerGalleryTemplate = (gallery) => {
   return `
   <section class="photographer-gallery">
     ${gallery
-      .map((media) => {
+      .map((media,index) => {
         return `
-        <article>
+        <article onClick="displayLightBoxModal(${index})">
           ${media.image ? 
             `<img src='assets/media/${media.image}' alt='${media.title}' />` :
             `

@@ -21,3 +21,9 @@ const getContactModalTemplate = (name) => {
       </div>
     `
 }
+
+const getLightBoxModal = () => {
+    return `
+    
+    `
+}
