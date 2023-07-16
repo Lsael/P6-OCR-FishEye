@@ -61,7 +61,6 @@ const displayPhotographersGallery = async () => {
   const gallery = await getPhotographerGallery(id);
   const selectElement = document.querySelector("#sort-options")
   const galleryElement = document.querySelector('.photographer-gallery')
-  console.log(selectElement.value)
   
   const photographerGallery = usePhotographerGalleryTemplate(sortGallery(gallery, selectElement.value));
 
@@ -92,7 +91,7 @@ const displayPhotographersPage = (HTMLtarget, photographer) => {
   })
 
   displayPhotographersPage(photographerDetailsElement, photographer);
-  displayPhotographersGallery('Popularity');
+  displayPhotographersGallery();
   displayPhotographersPriceBox(photographerDetailsElement, photographer.price)
   UpdateLikes(totalLikes)
 
