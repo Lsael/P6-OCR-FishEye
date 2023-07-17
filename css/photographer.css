@@ -87,39 +87,66 @@ main {
 dialog {
   border: none;
   background-color: inherit;
+  box-shadow: rgb(79, 79, 79) 5px 5px 240px;
+}
+
+.lightbox-modal {
+  aspect-ratio: 1;
+  color: #901C1C;
+  background-color: #FAFAFA;
+}
+
+.lightbox-modal div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-modal span {
+  font-size: 76px;
+}
+
+.media {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  width: 85%;
+}
+
+.media h3 {
+  align-self: flex-start;
+}
+
+.media img, .media video{
+  object-fit: cover;
+  width: 100%;
+  aspect-ratio: 1;
+  box-shadow: gray 0 0 8px;
+  clip-path: inset(0 -8px 0 0);
+  border-radius: 5px;
 }
 
 .contact-modal {
   width: 50%;
-}
-
-.modal {
   border-radius: 5px;
   background-color: #db8876;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
   padding: 35px;
   margin: auto;
 }
 
-.modal header {
+.contact-modal header {
   justify-content: space-between;
   width: 100%;
   margin: 16px 0;
 }
 
-.modal header img {
-  cursor: pointer;
-  position: absolute;
-  top: 36px;
-  right: 36px;
-}
-
-.modal header h2 {
+.contact-modal header h2 {
   font-size: 64px;
   font-weight: normal;
+}
+
+.contact-modal span {
+  color: white;
 }
 
 form {
@@ -155,4 +182,13 @@ form textarea {
   width: 100%;
   height: 170px;
   resize: none;
+}
+
+.close-button {
+  cursor: pointer;
+  position: absolute;
+  top: 36px;
+  right: 36px;
+  font-size: 84px;
+  line-height: 0.25;
 }

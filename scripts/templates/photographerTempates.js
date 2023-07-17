@@ -36,17 +36,17 @@ const usePhotographerPageTemplate = (photographer) => {
 };
 
 const usePhotographerGalleryTemplate = (gallery) => {
-
   return `
   <section class="photographer-gallery">
     ${gallery
-      .map((media,index) => {
+      .map((media, index) => {
         return `
-        <article onClick="displayLightBoxModal(${index})">
-          ${media.image ? 
-            `<img src='assets/media/${media.image}' alt='${media.title}' />` :
-            `
-            <video preload="metadata" alt='${media.title}' controls >
+        <article >
+          ${
+            media.image
+              ? `<img src='assets/media/${media.image}' alt='${media.title}' onClick="displayLightBoxModal(${index})"/>`
+              : `
+            <video preload="metadata" alt='${media.title}' onClick="displayLightBoxModal(${index})">
               <source src='assets/media/${media.video}#t=0.1' type="video/mp4">
             </video>
             `
@@ -64,11 +64,10 @@ const usePhotographerGalleryTemplate = (gallery) => {
 };
 
 const usePhotographerPriceBoxTemplate = (photographerPrice) => {
-
   return `
   <aside class="photographer-price">
     <p><span id="total-likes-count"></span> &hearts;</p>
     <span>${photographerPrice}€ / jour</span>
   </aside>
-  `
-}
+  `;
+};

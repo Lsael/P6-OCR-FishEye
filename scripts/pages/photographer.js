@@ -1,5 +1,5 @@
-const searchParams = new URLSearchParams(location.search)
-const id = searchParams.get('id')
+const searchParams = new URLSearchParams(location.search);
+const id = searchParams.get('id');
 const photographerDetailsElement = document.querySelector('#photographer-details');
 
 const getPhotographer = async (id) => {
@@ -27,47 +27,46 @@ const sortGallery = (gallery, selectedOption) => {
     case 'Popularity':
       gallery.sort((a, b) => {
         return b.likes - a.likes;
-      })
+      });
       return gallery;
     case 'Date':
       gallery.sort((a, b) => {
         return b.date - a.date;
-      })
+      });
       return gallery;
     case 'Title':
       gallery.sort((a, b) => {
         return a.title.localeCompare(b.title);
-      })
+      });
       return gallery;
   }
-}
+};
 
 const UpdateLikes = (quantity, id) => {
-  let totalLikesElement = document.querySelector("#total-likes-count")
-  let totalLikes = Number(totalLikesElement.innerText)
-  
-  if(id) {
-    let mediaLikesElement = document.querySelector(`.${CSS.escape(id)} > span`)
-    let mediaLikes = Number(mediaLikesElement.innerText)
-    mediaLikesElement.innerText = (mediaLikes += quantity)
-    totalLikesElement.innerText = (totalLikes += quantity)
-  } else {
-    totalLikesElement.innerText = (totalLikes += quantity)
-  }
-}
+  let totalLikesElement = document.querySelector('#total-likes-count');
+  let totalLikes = Number(totalLikesElement.innerText);
 
+  if (id) {
+    let mediaLikesElement = document.querySelector(`.${CSS.escape(id)} > span`);
+    let mediaLikes = Number(mediaLikesElement.innerText);
+    mediaLikesElement.innerText = mediaLikes += quantity;
+    totalLikesElement.innerText = totalLikes += quantity;
+  } else {
+    totalLikesElement.innerText = totalLikes += quantity;
+  }
+};
 
 const displayPhotographersGallery = async () => {
   const gallery = await getPhotographerGallery(id);
-  const selectElement = document.querySelector("#sort-options")
-  const galleryElement = document.querySelector('.photographer-gallery')
-  
+  const selectElement = document.querySelector('#sort-options');
+  const galleryElement = document.querySelector('.photographer-gallery');
+
   const photographerGallery = usePhotographerGalleryTemplate(sortGallery(gallery, selectElement.value));
 
-  if(galleryElement) {
-    galleryElement.remove()
+  if (galleryElement) {
+    galleryElement.remove();
   }
-  
+
   photographerDetailsElement.insertAdjacentHTML('beforeend', photographerGallery);
 };
 
@@ -84,15 +83,14 @@ const displayPhotographersPage = (HTMLtarget, photographer) => {
 (async () => {
   const photographer = await getPhotographer(id);
   const gallery = await getPhotographerGallery(id);
-  
+
   let totalLikes = 0;
   gallery.map((element) => {
-    totalLikes += element.likes
-  })
+    totalLikes += element.likes;
+  });
 
   displayPhotographersPage(photographerDetailsElement, photographer);
   displayPhotographersGallery();
-  displayPhotographersPriceBox(photographerDetailsElement, photographer.price)
-  UpdateLikes(totalLikes)
-
+  displayPhotographersPriceBox(photographerDetailsElement, photographer.price);
+  UpdateLikes(totalLikes);
 })();
