@@ -17,9 +17,20 @@ const getLightBoxModal = async (id, index) => {
   const gallery = await getPhotographerGallery(id);
   const sortChoice = document.querySelector('#sort-options').value;
   sortGallery(gallery, sortChoice);
-  const media = gallery[index];
 
-  return getLightBoxModalTemplate(media);
+  let media;
+
+  if(index < 0) {
+    media = gallery[gallery.length - 1]
+    index = gallery.length
+  } else if (index >= gallery.length) {
+    media = gallery[0]
+    index = 0
+  } else {
+    media = gallery[index]
+  }
+
+  return getLightBoxModalTemplate(media, index);
 };
 
 const displayLightBoxModal = async (index) => {
@@ -29,7 +40,10 @@ const displayLightBoxModal = async (index) => {
 
   const lightboxModalElement = document.querySelector('.lightbox-modal');
   lightboxModalElement.innerHTML = modal;
-  lightboxModalElement.showModal();
+
+  if(!lightboxModalElement.open) {
+    lightboxModalElement.showModal();
+  }
 };
 
 const closeModal = () => {

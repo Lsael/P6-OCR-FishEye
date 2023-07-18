@@ -20,10 +20,10 @@ const getContactModalTemplate = (name) => {
     `;
 };
 
-const getLightBoxModalTemplate = (media) => {
+const getLightBoxModalTemplate = (media, index) => {
   return `
     <div>
-        <span>&lsaquo;</span>
+        <span onClick="displayLightBoxModal(${index - 1})">&lsaquo;</span>
         <div class="media">
         ${
           media.image
@@ -32,7 +32,7 @@ const getLightBoxModalTemplate = (media) => {
         }
             <h3>${media.title}</h3>
         </div>
-        <span>&rsaquo;</span>
+        <span onClick="displayLightBoxModal(${index + 1})">&rsaquo;</span>
     </div>
     <span onclick="closeModal()" class="close-button">&#215;</span>
     `;

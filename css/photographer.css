@@ -104,6 +104,7 @@ dialog {
 
 .lightbox-modal span {
   font-size: 76px;
+  cursor: pointer;
 }
 
 .media {
