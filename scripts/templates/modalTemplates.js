@@ -1,7 +1,7 @@
 const getContactModalTemplate = (name) => {
   return `
         <header>
-            <div><h2>Contactez-moi<br>${name}</h2></div>
+            <div><h2 id="photographer" aria-label="Contact me, ${name}">Contactez-moi<br>${name}</h2></div>
             <span role="button" aria-label="Close dialog" onclick="closeModal()" class="close-button">&#215;</span>
         </header>
         <form>
@@ -21,16 +21,17 @@ const getContactModalTemplate = (name) => {
 };
 
 const getLightBoxModalTemplate = (media, index) => {
+  const { image, title, video } = media;
   return `
     <div>
         <span role="button" aria-label="Previous image" onClick="displayLightBoxModal(${index - 1})">&lsaquo;</span>
         <div class="media">
         ${
-          media.image
-            ? `<img src='assets/media/${media.image}' alt='${media.title}' class="lightbox-media"/>`
-            : `<video src='assets/media/${media.video}' type="video/mp4" alt='${media.title}' controls></video>`
+          image
+            ? `<img src='assets/media/${image}' alt='${title}' class="lightbox-media"/>`
+            : `<video src='assets/media/${video}' type="video/mp4" alt='${title}' controls></video>`
         }
-            <h3>${media.title}</h3>
+            <h3>${title}</h3>
         </div>
         <span role="button" aria-label="Next image" onClick="displayLightBoxModal(${index + 1})">&rsaquo;</span>
     </div>

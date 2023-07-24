@@ -15,13 +15,13 @@ const usePhotographerThumbnailTemplate = (photographer) => {
 };
 
 const usePhotographerPageTemplate = (photographer) => {
-  const { name, city, tagline, portrait } = photographer;
+  const { name, city, country, tagline, portrait } = photographer;
 
   return `
   <section class="photographer-header">
     <div class="photographer-infos">
       <h1 class="photographer-name">${name}</h1>
-      <h3 class="photographer-city">${city}</h3>
+      <h3 class="photographer-city">${city}, ${country}</h3>
       <span class="photographer-tagline">${tagline}</span>
     </div>
     <button type="button" class="button" onclick="displayContactModal()">Contactez-moi</button>
@@ -45,7 +45,7 @@ const usePhotographerGalleryTemplate = (gallery) => {
       .map((media, index) => {
         const { title, image, video, id, likes } = media;
         return `
-        <article aria-label="${title}, close up view">
+        <article aria-label="${title}, close up view" tabindex="0">
           ${
             image
               ? `<img src='assets/media/${image}' alt='${title}' onClick="displayLightBoxModal(${index})"/>`

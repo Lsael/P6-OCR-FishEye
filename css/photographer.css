@@ -7,9 +7,10 @@ main {
 }
 
 .photographer-header {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
-  justify-content: space-between;
+  justify-items: center;
   background-color: #fafafa;
   height: 300px;
   padding: 0 40px;
@@ -22,6 +23,21 @@ main {
   border-radius: 50%;
 }
 
+.photographer-header h1 {
+  color: #d3573c;
+  margin: 0;
+  font-size: 48px;
+}
+
+.photographer-header h3 {
+  color: #901c1c;
+  font-size: 24px;
+}
+
+.photographer-header span {
+  font-size: 18px;
+}
+
 .sort-bar {
   font-weight: bold;
   margin: 16px 0;
@@ -32,7 +48,7 @@ main {
   width: 170px;
   margin: 0 16px;
   padding: 16px 8px;
-  background-color: #901C1C;
+  background-color: #901c1c;
   color: white;
   border-radius: 4px;
 }
@@ -52,7 +68,8 @@ main {
   cursor: pointer;
 }
 
-.photographer-gallery article img, .photographer-gallery article video {
+.photographer-gallery article img,
+.photographer-gallery article video {
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
@@ -63,7 +80,11 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #901C1C;
+  color: #901c1c;
+}
+
+.photographer-gallery p {
+  justify-self: end;
 }
 
 /* La couleur du background donnée dans la maquette ne correspond pas à la couleur affichée */
@@ -78,7 +99,8 @@ main {
   border-radius: 5px 5px 0 0;
 }
 
-.photographer-price p, .photographer-price span {
+.photographer-price p,
+.photographer-price span {
   font-size: 24px;
   font-weight: 600;
   margin: 0 24px;
@@ -91,8 +113,8 @@ dialog {
 }
 
 .lightbox-modal {
-  color: #901C1C;
-  background-color: #FAFAFA;
+  color: #901c1c;
+  background-color: #fafafa;
 }
 
 .lightbox-modal div {
@@ -117,7 +139,8 @@ dialog {
   align-self: flex-start;
 }
 
-.media img, .media video{
+.media img,
+.media video {
   object-fit: cover;
   width: 100%;
   aspect-ratio: 1;

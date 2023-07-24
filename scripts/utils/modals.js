@@ -20,14 +20,14 @@ const getLightBoxModal = async (id, index) => {
 
   let media;
 
-  if(index < 0) {
-    media = gallery[gallery.length - 1]
-    index = gallery.length
+  if (index < 0) {
+    media = gallery[gallery.length - 1];
+    index = gallery.length;
   } else if (index >= gallery.length) {
-    media = gallery[0]
-    index = 0
+    media = gallery[0];
+    index = 0;
   } else {
-    media = gallery[index]
+    media = gallery[index];
   }
 
   return getLightBoxModalTemplate(media, index);
@@ -41,7 +41,7 @@ const displayLightBoxModal = async (index) => {
   const lightboxModalElement = document.querySelector('.lightbox-modal');
   lightboxModalElement.innerHTML = modal;
 
-  if(!lightboxModalElement.open) {
+  if (!lightboxModalElement.open) {
     lightboxModalElement.showModal();
   }
 };
