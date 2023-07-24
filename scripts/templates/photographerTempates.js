@@ -1,13 +1,16 @@
 const usePhotographerThumbnailTemplate = (photographer) => {
-  const { name, portrait, id } = photographer;
+  const { name, portrait, id, city, country, price, tagline } = photographer;
 
   return `
-  <a href = '/photographer.html?id=${id}'>
-    <article>
-      <img src='assets/photographers/${portrait}' alt='${name}-picture' />
-      <h2>${name}<h2>
-    </article>
-  </a>
+  <article class='photographer-thumbnail'>
+    <a href = '/photographer.html?id=${id}'>
+      <img src='assets/photographers/${portrait}' alt='${name}'/>
+      <h2>${name}</h2>
+    </a>
+    <span>${city}, ${country}</span>
+    <span>${tagline}</span>
+    <span>${price}€/jour</span>
+  </article>
   `;
 };
 
@@ -21,16 +24,16 @@ const usePhotographerPageTemplate = (photographer) => {
       <h3 class="photographer-city">${city}</h3>
       <span class="photographer-tagline">${tagline}</span>
     </div>
-    <button class="button" onclick="displayContactModal()">Contactez-moi</button>
-    <img src='assets/photographers/${portrait}' alt='${name}-picture' />
+    <button type="button" class="button" onclick="displayContactModal()">Contactez-moi</button>
+    <img src='assets/photographers/${portrait}' alt='${name}'/>
   </section>
   <section class="sort-bar">
-  <label for="sort-options">Trier par</label>
-  <select id="sort-options" onChange="displayPhotographersGallery()">
-    <option value="Popularity">Popularité</option>
-    <option value="Date">Date</option>
-    <option value="Title">Titre</option>
-  </select>
+    <label for="sort-options">Trier par</label>
+    <select id="sort-options" onChange="displayPhotographersGallery()">
+      <option value="Popularity">Popularité</option>
+      <option value="Date">Date</option>
+      <option value="Title">Titre</option>
+    </select>
   </section>
   `;
 };
@@ -40,20 +43,21 @@ const usePhotographerGalleryTemplate = (gallery) => {
   <section class="photographer-gallery">
     ${gallery
       .map((media, index) => {
+        const { title, image, video, id, likes } = media;
         return `
-        <article >
+        <article aria-label="${title}, close up view">
           ${
-            media.image
-              ? `<img src='assets/media/${media.image}' alt='${media.title}' onClick="displayLightBoxModal(${index})"/>`
+            image
+              ? `<img src='assets/media/${image}' alt='${title}' onClick="displayLightBoxModal(${index})"/>`
               : `
-            <video preload="metadata" alt='${media.title}' onClick="displayLightBoxModal(${index})">
-              <source src='assets/media/${media.video}#t=0.1' type="video/mp4">
+            <video preload="metadata" alt='${title}' onClick="displayLightBoxModal(${index})">
+              <source src='assets/media/${video}#t=0.1' type="video/mp4">
             </video>
             `
           }
           <div>
-            <h3>${media.title}</h3>
-            <p aria-label="likes" class="${media.id}" onClick={UpdateLikes(1,${media.id})}><span>${media.likes}</span> &hearts;</p>
+            <h3>${title}</h3>
+            <p aria-label="likes" class="${id}" onClick={UpdateLikes(1,${id})}><span>${likes}</span> &hearts;</p>
           </div>
         </article>
         `;
@@ -66,8 +70,8 @@ const usePhotographerGalleryTemplate = (gallery) => {
 const usePhotographerPriceBoxTemplate = (photographerPrice) => {
   return `
   <aside class="photographer-price">
-    <p><span id="total-likes-count"></span> &hearts;</p>
-    <span>${photographerPrice}€ / jour</span>
+    <p aria-label="total likes"><span id="total-likes-count"></span> &hearts;</p>
+    <span aria-label="price per day">${photographerPrice}€ / jour</span>
   </aside>
   `;
 };
