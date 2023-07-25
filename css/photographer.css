@@ -92,10 +92,11 @@ main {
   position: fixed;
   bottom: 0;
   right: 5%;
-  padding: 8px 8px;
+  padding: 8px 16px;
   background-color: #d47761;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-radius: 5px 5px 0 0;
 }
 
@@ -104,6 +105,10 @@ main {
   font-size: 24px;
   font-weight: 600;
   margin: 0 24px;
+}
+
+#total-likes-count {
+  margin: 0;
 }
 
 dialog {
