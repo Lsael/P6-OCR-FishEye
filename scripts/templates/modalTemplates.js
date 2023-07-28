@@ -1,21 +1,22 @@
+
 const getContactModalTemplate = (name) => {
   return `
         <header>
             <div><h2 id="photographer" aria-label="Contact me, ${name}">Contactez-moi<br>${name}</h2></div>
             <span role="button" aria-label="Close dialog" onclick="closeModal()" class="close-button">&#215;</span>
         </header>
-        <form>
+        <form onSubmit="submitContactForm(); return false;">
           <div>
             <label for="firstname">Prénom</label>
-            <input name="firstname"/>
+            <input name="firstname" id="contact-firstname"/>
             <label for="lastname">Nom</label>
-            <input name="lastname"/>
+            <input name="lastname" id="contact-lastname"/>
             <label for="email">Email</label>
-            <input name="email"/>
+            <input name="email" id="contact-email"/>
             <label for="your message">Votre message</label>
-            <textarea name="your message"></textarea>
+            <textarea name="your message" id="contact-message"></textarea>
           </div>
-          <button type="button" class="button">Envoyer</button>
+          <button type="submit" class="button">Envoyer</button>
         </form>
     `;
 };
