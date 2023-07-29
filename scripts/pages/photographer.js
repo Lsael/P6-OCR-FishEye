@@ -51,6 +51,7 @@ const UpdateLikes = (quantity, id) => {
     let mediaLikes = Number(mediaLikesElement.innerText);
     mediaLikesElement.innerText = mediaLikes += quantity;
     totalLikesElement.innerText = totalLikes += quantity;
+    document.querySelector(`.${CSS.escape(id)}`).onclick = null
   } else {
     totalLikesElement.innerText = totalLikes += quantity;
   }
