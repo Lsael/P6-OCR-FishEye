@@ -48,16 +48,16 @@ const usePhotographerGalleryTemplate = (gallery) => {
         <article aria-label="${title}, close up view">
           ${
             image
-              ? `<img src='assets/media/${image}' alt='${title}' onClick="displayLightBoxModal(${index})" tabindex="0"/>`
+              ? `<img src='assets/media/${image}' alt='${title}' onkeydown="onKeyDown(event);" onClick="displayLightBoxModal(${index})" tabindex="0"/>`
               : `
-            <video preload="metadata" alt='${title}' onClick="displayLightBoxModal(${index})" tabindex="0">
+            <video preload="metadata" alt='${title}' onkeydown="onKeyDown(event);" onClick="displayLightBoxModal(${index})" tabindex="0">
               <source src='assets/media/${video}#t=0.1' type="video/mp4">
             </video>
             `
           }
           <div>
             <h3>${title}</h3>
-            <p aria-label="likes" class="${id}" onClick={UpdateLikes(1,${id})} tabindex="0"><span>${likes}</span> &hearts;</p>
+            <p aria-label="likes" class="${id}" onkeydown="onKeyDown(event);" onClick={UpdateLikes(1,${id})} tabindex="0"><span>${likes}</span> &hearts;</p>
           </div>
         </article>
         `;
