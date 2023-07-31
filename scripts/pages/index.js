@@ -18,9 +18,11 @@ const displayPhotographersThumbnails = (HTMLtarget, photographers) => {
   HTMLtarget.innerHTML = photographersList;
 };
 
-(async () => {
+const initHomePage = async () => {
   const photographersSection = document.querySelector('.photographer-section');
   const { photographers } = await getPhotographers();
 
   displayPhotographersThumbnails(photographersSection, photographers);
-})();
+};
+
+initHomePage()

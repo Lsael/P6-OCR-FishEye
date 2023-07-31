@@ -81,7 +81,7 @@ const displayPhotographersPage = (HTMLtarget, photographer) => {
   HTMLtarget.innerHTML = photographerPage;
 };
 
-(async () => {
+const initPhotographerPage = async () => {
   const photographer = await getPhotographer(id);
   const gallery = await getPhotographerGallery(id);
 
@@ -94,4 +94,6 @@ const displayPhotographersPage = (HTMLtarget, photographer) => {
   displayPhotographersGallery();
   displayPhotographersPriceBox(photographerDetailsElement, photographer.price);
   UpdateLikes(totalLikes);
-})();
+};
+
+initPhotographerPage()
