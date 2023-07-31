@@ -39,4 +39,3 @@ const getLightBoxModalTemplate = (media, index) => {
     <span role="button" onkeydown="onKeyDown(event);" aria-label="Close dialog" onclick="closeModal()" class="close-button" tabindex="0">&#215;</span>
     `;
 };
-next-image-button
