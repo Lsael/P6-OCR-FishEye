@@ -1,4 +1,4 @@
-const onKeyDown = (event) => {
+const onKeyUp = (event) => {
     if(event.key === "Enter") {
       event.target.onclick()
     }

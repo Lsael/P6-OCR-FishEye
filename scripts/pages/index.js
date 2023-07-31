@@ -1,4 +1,4 @@
-const getPhotographers = async () => {
+const getAllPhotographers = async () => {
   const photographers = fetch('data/photographers.json')
     .then((res) => res.json())
     .then((datas) => {
@@ -20,9 +20,8 @@ const displayPhotographersThumbnails = (HTMLtarget, photographers) => {
 
 const initHomePage = async () => {
   const photographersSection = document.querySelector('.photographer-section');
-  const { photographers } = await getPhotographers();
+  const { photographers } = await getAllPhotographers();
 
   displayPhotographersThumbnails(photographersSection, photographers);
 };
-
 initHomePage()

@@ -42,7 +42,7 @@ const sortGallery = (gallery, selectedOption) => {
   }
 };
 
-const UpdateLikes = (quantity, id) => {
+const updateLikes = (quantity, id) => {
   let totalLikesElement = document.querySelector('#total-likes-count');
   let totalLikes = Number(totalLikesElement.innerText);
 
@@ -93,7 +93,7 @@ const initPhotographerPage = async () => {
   displayPhotographersPage(photographerDetailsElement, photographer);
   displayPhotographersGallery();
   displayPhotographersPriceBox(photographerDetailsElement, photographer.price);
-  UpdateLikes(totalLikes);
+  updateLikes(totalLikes);
 };
 
 initPhotographerPage()

@@ -25,7 +25,7 @@ const getLightBoxModalTemplate = (media, index) => {
   const { image, title, video } = media;
   return `
     <div>
-        <span id="previous-image-button" role="button" onkeydown="onKeyDown(event);"  aria-label="Previous image" onClick="displayLightBoxModal(${index - 1})" tabindex="0">&lsaquo;</span>
+        <span id="previous-image-button" role="button" onKeyUp="onKeyUp(event);"  aria-label="Previous image" onClick="displayLightBoxModal(${index - 1})" tabindex="0">&lsaquo;</span>
         <div class="media">
         ${
           image
@@ -34,8 +34,8 @@ const getLightBoxModalTemplate = (media, index) => {
         }
             <h3>${title}</h3>
         </div>
-        <span id="next-image-button" role="button" onkeydown="onKeyDown(event);" aria-label="Next image" onClick="displayLightBoxModal(${index + 1})" tabindex="0">&rsaquo;</span>
+        <span id="next-image-button" role="button" onKeyUp="onKeyUp(event);" aria-label="Next image" onClick="displayLightBoxModal(${index + 1})" tabindex="0">&rsaquo;</span>
     </div>
-    <span role="button" onkeydown="onKeyDown(event);" aria-label="Close dialog" onclick="closeModal()" class="close-button" tabindex="0">&#215;</span>
+    <span role="button" onkeyup="onKeyUp(event);" aria-label="Close dialog" onclick="closeModal()" class="close-button" tabindex="0">&#215;</span>
     `;
 };
